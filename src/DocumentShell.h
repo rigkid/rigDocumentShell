@@ -43,14 +43,14 @@ class DocumentShell {
 	/** @brief Open the file dialog (also bound to File → Open… by @ref attachChrome). */
 	void promptOpen();
 
-	/** @brief Cart-like document — call after load so Viewer can point at RigPlayer. */
+	/** @brief Playable document — call after load so Viewer can point at RigPlayer. */
 	void notifyNeedsPlayer();
 
 	/**
-	 * @brief Heuristic: skipped cart schemas and/or Lua / pico8 code buffer.
-	 * Viewer cannot play these; RigPlayer can.
+	 * @brief Heuristic: skipped play-loop schemas (pixel / music / input) and/or
+	 * Lua / pico8 code buffer. Viewer cannot play these; RigPlayer can.
 	 */
-	static bool looksLikeCart(const std::vector<std::string>& skippedKeys, bool hasLuaCode);
+	static bool needsPlayer(const std::vector<std::string>& skippedKeys, bool hasLuaCode);
 
   private:
 	OpenPathFn m_onOpen;

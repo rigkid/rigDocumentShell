@@ -2,7 +2,7 @@
 
 Desktop **UI chrome** for hosts that open Rig documents (`.rig`) — today [RigViewer](https://github.com/rigkid/RigViewer) and [RigPlayer](https://github.com/rigkid/RigPlayer).
 
-**Viewer presents; Player plays.** This pack does neither. It wires File → Open, skipped-key honesty UI, optional Edit Mode / dock passthrough, and a cart heuristic so Viewer can point at Player.
+**Viewer presents; Player plays.** This pack does neither. It wires File → Open, skipped-key honesty UI, optional Edit Mode / dock passthrough, and a play-loop heuristic so Viewer can point at Player.
 
 ## Scope
 
@@ -11,7 +11,7 @@ Desktop **UI chrome** for hosts that open Rig documents (`.rig`) — today [RigV
 | File → Open (default filters: `.rig`, `.json`; `.pg` legacy) | Load / serialize / Contract import → **rigProject** |
 | Skipped-keys window + document title | Present geometry / GLSL → **RigViewer** |
 | Edit Mode UI + central-dock passthrough via `attachChrome` | Run Lua SUDE → **RigPlayer** |
-| `looksLikeCart` / `notifyNeedsPlayer` | Generic chrome for plotter / OSC / other hosts |
+| `needsPlayer` / `notifyNeedsPlayer` | Generic chrome for plotter / OSC / other hosts |
 
 Not every RigKit host should register this — only document hosts that care about Contract honesty UI.
 
@@ -35,7 +35,7 @@ if (auto shellPack = packs->getPack<rigkit::rigDocumentShell>()) {
 	}
 	shell.setSkippedKeys(doc.skipped);
 	shell.setDocumentTitle(doc.title);
-	if (rigkit::DocumentShell::looksLikeCart(doc.skipped, hasLuaCode)) {
+	if (rigkit::DocumentShell::needsPlayer(doc.skipped, hasLuaCode)) {
 		shell.notifyNeedsPlayer();
 	}
 }

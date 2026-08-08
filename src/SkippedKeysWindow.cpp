@@ -28,7 +28,7 @@ void SkippedKeysWindow::renderContents() {
 		return;
 	}
 	ImGui::TextWrapped(
-		"%zu skipped key(s). Cart schemas (pixel / music / Lua) need RigPlayer — "
+		"%zu skipped key(s). Play-loop schemas (pixel / music / Lua) need RigPlayer — "
 		"Viewer presents; Player plays.",
 		keys.size());
 	ImGui::Separator();
