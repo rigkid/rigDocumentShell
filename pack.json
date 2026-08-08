@@ -1,0 +1,19 @@
+{
+  "name": "rigDocumentShell",
+  "url": "https://github.com/rigkid/rigDocumentShell.git",
+  "ref": "main",
+  "version": "0.1.0",
+  "author": "Rigkid",
+  "license": "MIT Rigkid Contributors",
+  "description": "Shared desktop chrome for document hosts (Viewer/Player): File Open, skipped keys, Edit Mode defaults.",
+  "dependencies": [
+    {
+      "name": "rigImGui",
+      "url": "https://github.com/rigkid/rigImGui.git",
+      "ref": "main"
+    }
+  ],
+  "include_paths": [
+    "src"
+  ]
+}

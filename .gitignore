@@ -1,0 +1,6 @@
+﻿# Pack checkouts ignore build trees
+build/
+**/build/
+.vs/
+.DS_Store
+*.log

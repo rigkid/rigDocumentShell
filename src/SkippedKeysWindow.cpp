@@ -1,0 +1,39 @@
+#include "SkippedKeysWindow.h"
+
+#include "DocumentShell.h"
+
+#include <imgui.h>
+
+namespace rigkit {
+
+SkippedKeysWindow::SkippedKeysWindow(DocumentShell* shell)
+	: IWindow("Skipped keys", 0), m_shell(shell) {
+	setCategory("Document");
+}
+
+void SkippedKeysWindow::renderContents() {
+	if (!m_shell) {
+		ImGui::TextUnformatted("No document shell.");
+		return;
+	}
+	const auto& title = m_shell->documentTitle();
+	if (!title.empty()) {
+		ImGui::Text("Document: %s", title.c_str());
+		ImGui::Separator();
+	}
+	const auto& keys = m_shell->skippedKeys();
+	if (keys.empty()) {
+		ImGui::TextDisabled("No skipped rig.* keys.");
+		ImGui::TextWrapped(
+			"Unknown Contract keys would list here. Cart schemas (pixel / music / Lua) need "
+			"RigPlayer — Viewer presents; Player plays.");
+		return;
+	}
+	ImGui::TextWrapped("%zu skipped key(s). Cart-like docs belong in RigPlayer.", keys.size());
+	ImGui::Separator();
+	for (const auto& k : keys) {
+		ImGui::BulletText("%s", k.c_str());
+	}
+}
+
+} // namespace rigkit
