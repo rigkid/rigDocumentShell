@@ -6,13 +6,13 @@
 
 namespace rigkit {
 
-class Mui;
 class IMui;
 
 /**
  * @brief Shared document-host chrome (Viewer / Player).
  * @details File → Open, skipped-key list, Edit Mode / dock defaults.
  * Does not load documents or run code — apps supply @ref setOnOpenPath.
+ * Not generic host chrome (plotter / OSC / …); not rigProject serialize.
  */
 class DocumentShell {
   public:
@@ -20,9 +20,10 @@ class DocumentShell {
 	using NeedsPlayerFn = std::function<void()>;
 
 	void setOnOpenPath(OpenPathFn fn) { m_onOpen = std::move(fn); }
+	/** @brief Optional; called from @ref notifyNeedsPlayer after the log line. */
 	void setOnNeedsPlayer(NeedsPlayerFn fn) { m_onNeedsPlayer = std::move(fn); }
 
-	/** @brief Extensions for the open dialog (default `.json` `.rig` `.pg`). */
+	/** @brief Extensions for the open dialog (default `.rig` `.json`; `.pg` legacy alias). */
 	void setOpenFilters(std::vector<std::string> filters) { m_filters = std::move(filters); }
 
 	void setDocumentTitle(std::string title) { m_title = std::move(title); }
@@ -32,21 +33,22 @@ class DocumentShell {
 	const std::vector<std::string>& skippedKeys() const { return m_skipped; }
 
 	/**
-	 * @brief Wire File→Open, Edit Mode, dock passthrough onto @p mui.
-	 * @param editModeOn Start in Edit Mode (Ctrl+E still toggles when enabled on engine).
+	 * @brief Wire File→Open, Edit Mode, dock passthrough onto @p ui.
+	 * @param editModeOn Start Edit Mode UI ON (host must also call
+	 *        RigKitEngine::enableEditMode(true) when it wants the feature).
 	 * @param dockPassthroughCentral GL bed shows through central dock node.
 	 */
-	void attachChrome(Mui& mui, bool editModeOn = true, bool dockPassthroughCentral = true);
+	void attachChrome(IMui& ui, bool editModeOn = true, bool dockPassthroughCentral = true);
 
 	/** @brief Open the file dialog (also bound to File → Open… by @ref attachChrome). */
 	void promptOpen();
 
-	/** @brief Cart-like document — call after load so hosts can deep-link to Player. */
+	/** @brief Cart-like document — call after load so Viewer can point at RigPlayer. */
 	void notifyNeedsPlayer();
 
 	/**
-	 * @brief Heuristic: skipped pixel/music/input keys and/or Lua code buffer.
-	 * Viewer cannot play these; Player / PICO-8 can.
+	 * @brief Heuristic: skipped cart schemas and/or Lua / pico8 code buffer.
+	 * Viewer cannot play these; RigPlayer can.
 	 */
 	static bool looksLikeCart(const std::vector<std::string>& skippedKeys, bool hasLuaCode);
 
@@ -54,7 +56,7 @@ class DocumentShell {
 	OpenPathFn m_onOpen;
 	NeedsPlayerFn m_onNeedsPlayer;
 	IMui* m_ui = nullptr;
-	std::vector<std::string> m_filters{".json", ".rig", ".pg"};
+	std::vector<std::string> m_filters{".rig", ".json", ".pg"};
 	std::string m_title;
 	std::vector<std::string> m_skipped;
 };

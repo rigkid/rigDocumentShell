@@ -24,12 +24,13 @@ void SkippedKeysWindow::renderContents() {
 	const auto& keys = m_shell->skippedKeys();
 	if (keys.empty()) {
 		ImGui::TextDisabled("No skipped rig.* keys.");
-		ImGui::TextWrapped(
-			"Unknown Contract keys would list here. Cart schemas (pixel / music / Lua) need "
-			"RigPlayer — Viewer presents; Player plays.");
+		ImGui::TextWrapped("Unknown Contract keys from the last open would list here.");
 		return;
 	}
-	ImGui::TextWrapped("%zu skipped key(s). Cart-like docs belong in RigPlayer.", keys.size());
+	ImGui::TextWrapped(
+		"%zu skipped key(s). Cart schemas (pixel / music / Lua) need RigPlayer — "
+		"Viewer presents; Player plays.",
+		keys.size());
 	ImGui::Separator();
 	for (const auto& k : keys) {
 		ImGui::BulletText("%s", k.c_str());

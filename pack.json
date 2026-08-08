@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "Rigkid",
   "license": "MIT Rigkid Contributors",
-  "description": "Shared desktop chrome for document hosts (Viewer/Player): File Open, skipped keys, Edit Mode defaults.",
+  "description": "Document-host desktop chrome (Viewer/Player): File Open for .rig, skipped-key honesty UI, Edit Mode defaults. Not load/serialize (rigProject); not present/play.",
   "dependencies": [
     {
       "name": "rigImGui",

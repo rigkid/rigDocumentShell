@@ -1,19 +1,18 @@
 #include "DocumentShell.h"
 
-#include "Mui.h"
 #include "core/IMui.h"
 
 #include <spdlog/spdlog.h>
 
 namespace rigkit {
 
-void DocumentShell::attachChrome(Mui& mui, bool editModeOn, bool dockPassthroughCentral) {
-	m_ui = &mui;
-	mui.setDockPassthroughCentral(dockPassthroughCentral);
+void DocumentShell::attachChrome(IMui& ui, bool editModeOn, bool dockPassthroughCentral) {
+	m_ui = &ui;
+	ui.setDockPassthroughCentral(dockPassthroughCentral);
 	if (editModeOn) {
-		mui.setEditMode(true);
+		ui.setEditMode(true);
 	}
-	mui.registerFileAction(
+	ui.registerFileAction(
 		"Open...", [this]() { promptOpen(); }, "Ctrl+O");
 }
 
@@ -26,13 +25,14 @@ void DocumentShell::promptOpen() {
 		if (path.empty() || !m_onOpen) {
 			return;
 		}
+		m_ui->noteRecentFile(path);
 		m_onOpen(path);
 	});
 }
 
 void DocumentShell::notifyNeedsPlayer() {
 	spdlog::info("[rigDocumentShell] Document looks like a cart — Viewer presents; Player plays. "
-				 "Open in RigPlayer (or export .p8 via PicoForge).");
+				 "Open the .rig in RigPlayer.");
 	if (m_onNeedsPlayer) {
 		m_onNeedsPlayer();
 	}
@@ -44,7 +44,7 @@ bool DocumentShell::looksLikeCart(const std::vector<std::string>& skippedKeys, b
 	}
 	for (const auto& key : skippedKeys) {
 		if (key.rfind("rig.pixel.", 0) == 0 || key.rfind("rig.music.", 0) == 0 ||
-			key.rfind("rig.input.", 0) == 0 || key == "rig.led.uv_map") {
+			key.rfind("rig.input.", 0) == 0 || key.rfind("rig.media.code", 0) == 0) {
 			return true;
 		}
 	}
