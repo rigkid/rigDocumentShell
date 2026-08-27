@@ -1,10 +1,10 @@
 #include "rigDocumentShell.h"
 
-#include "SkippedKeysWindow.h"
 #include "core/IMui.h"
-#include "core/RigKitEngine.h"
 #include "core/pack/PackRegistry.h"
+#include "core/RigKitEngine.h"
 #include "MWindow.h"
+#include "SkippedKeysWindow.h"
 
 #include <memory>
 #include <spdlog/spdlog.h>
@@ -30,7 +30,7 @@ void rigDocumentShell::setup() {
 	// Edit Mode feature is host-owned (Viewer calls enableEditMode; Player does not).
 	auto* ui = engine->getUiManager();
 	if (!ui) {
-		spdlog::warn("[rigDocumentShell] no IMui — chrome skipped (need rigImGui)");
+		spdlog::warn("[rigDocumentShell] no IMui - chrome skipped (need rigImGui)");
 		return;
 	}
 	auto* wm = ui->getWindowManager();

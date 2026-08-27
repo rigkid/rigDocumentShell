@@ -1,8 +1,7 @@
 #include "SkippedKeysWindow.h"
 
-#include "DocumentShell.h"
-
 #include <imgui.h>
+#include "DocumentShell.h"
 
 namespace rigkit {
 
@@ -28,7 +27,7 @@ void SkippedKeysWindow::renderContents() {
 		return;
 	}
 	ImGui::TextWrapped(
-		"%zu skipped key(s). Play-loop schemas (pixel / music / Lua) need RigPlayer — "
+		"%zu skipped key(s). Play-loop schemas (pixel / music / Lua) need RigPlayer - "
 		"Viewer presents; Player plays.",
 		keys.size());
 	ImGui::Separator();

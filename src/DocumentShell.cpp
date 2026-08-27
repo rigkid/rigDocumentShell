@@ -1,8 +1,7 @@
 #include "DocumentShell.h"
 
-#include "core/IMui.h"
-
 #include <spdlog/spdlog.h>
+#include "core/IMui.h"
 
 namespace rigkit {
 
@@ -31,7 +30,7 @@ void DocumentShell::promptOpen() {
 }
 
 void DocumentShell::notifyNeedsPlayer() {
-	spdlog::info("[rigDocumentShell] Document has a play loop — Viewer presents; Player plays. "
+	spdlog::info("[rigDocumentShell] Document has a play loop - Viewer presents; Player plays. "
 				 "Open the .rig in RigPlayer.");
 	if (m_onNeedsPlayer) {
 		m_onNeedsPlayer();

@@ -10,9 +10,9 @@ class IMui;
 
 /**
  * @brief Shared document-host chrome (Viewer / Player).
- * @details File → Open, skipped-key list, Edit Mode / dock defaults.
- * Does not load documents or run code — apps supply @ref setOnOpenPath.
- * Not generic host chrome (plotter / OSC / …); not rigProject serialize.
+ * @details File to Open, skipped-key list, Edit Mode / dock defaults.
+ * Does not load documents or run code - apps supply `setOnOpenPath`.
+ * Not generic host chrome (plotter / OSC / ...); not rigProject serialize.
  */
 class DocumentShell {
   public:
@@ -20,7 +20,7 @@ class DocumentShell {
 	using NeedsPlayerFn = std::function<void()>;
 
 	void setOnOpenPath(OpenPathFn fn) { m_onOpen = std::move(fn); }
-	/** @brief Optional; called from @ref notifyNeedsPlayer after the log line. */
+	/** @brief Optional; called from `notifyNeedsPlayer` after the log line. */
 	void setOnNeedsPlayer(NeedsPlayerFn fn) { m_onNeedsPlayer = std::move(fn); }
 
 	/** @brief Extensions for the open dialog (default `.rig` `.json`; `.pg` legacy alias). */
@@ -33,17 +33,17 @@ class DocumentShell {
 	const std::vector<std::string>& skippedKeys() const { return m_skipped; }
 
 	/**
-	 * @brief Wire File→Open, Edit Mode, dock passthrough onto @p ui.
+	 * @brief Wire File to Open, Edit Mode, dock passthrough onto @p ui.
 	 * @param editModeOn Start Edit Mode UI ON (host must also call
 	 *        RigKitEngine::enableEditMode(true) when it wants the feature).
 	 * @param dockPassthroughCentral GL bed shows through central dock node.
 	 */
 	void attachChrome(IMui& ui, bool editModeOn = true, bool dockPassthroughCentral = true);
 
-	/** @brief Open the file dialog (also bound to File → Open… by @ref attachChrome). */
+	/** @brief Open the file dialog (also bound to File > Open by `attachChrome`). */
 	void promptOpen();
 
-	/** @brief Playable document — call after load so Viewer can point at RigPlayer. */
+	/** @brief Playable document - call after load so Viewer can point at RigPlayer. */
 	void notifyNeedsPlayer();
 
 	/**

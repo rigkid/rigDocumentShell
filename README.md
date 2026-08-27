@@ -1,21 +1,21 @@
 # rigDocumentShell
 
-Desktop **UI chrome** for hosts that open Rig documents (`.rig`) — today [RigViewer](https://github.com/rigkid/RigViewer) and [RigPlayer](https://github.com/rigkid/RigPlayer).
+Desktop **UI chrome** for hosts that open Rig documents (`.rig`) - today [RigViewer](https://github.com/rigkid/RigViewer) and [RigPlayer](https://github.com/rigkid/RigPlayer).
 
-**Viewer presents; Player plays.** This pack does neither. It wires File → Open, skipped-key honesty UI, optional Edit Mode / dock passthrough, and a play-loop heuristic so Viewer can point at Player.
+**Viewer presents; Player plays.** This pack does neither. It wires File > Open, skipped-key honesty UI, optional Edit Mode / dock passthrough, and a play-loop heuristic so Viewer can point at Player.
 
 ## Scope
 
 | This pack | Not this pack |
 |-----------|----------------|
-| File → Open (default filters: `.rig`, `.json`; `.pg` legacy) | Load / serialize / Contract import → **rigProject** |
-| Skipped-keys window + document title | Present geometry / GLSL → **RigViewer** |
-| Edit Mode UI + central-dock passthrough via `attachChrome` | Run Lua SUDE → **RigPlayer** |
+| File > Open (default filters: `.rig`, `.json`; `.pg` legacy) | Load / serialize / Contract import to **rigProject** |
+| Skipped-keys window + document title | Present geometry / GLSL to **RigViewer** |
+| Edit Mode UI + central-dock passthrough via `attachChrome` | Run Lua SUDE to **RigPlayer** |
 | `needsPlayer` / `notifyNeedsPlayer` | Generic chrome for plotter / OSC / other hosts |
 
-Not every RigKit host should register this — only document hosts that care about Contract honesty UI.
+Not every RigKit host should register this - only document hosts that care about Contract honesty UI.
 
-**Edit Mode:** registering the pack does **not** enable the engine feature. Viewer should call `engine->enableEditMode(true)` then `attachChrome(ui, true, …)`. Player uses `attachChrome(ui, false, …)`.
+**Edit Mode:** registering the pack does **not** enable the engine feature. Viewer should call `engine->enableEditMode(true)` then `attachChrome(ui, true, ...)`. Player uses `attachChrome(ui, false, ...)`.
 
 ## Use
 
@@ -41,7 +41,7 @@ if (auto shellPack = packs->getPack<rigkit::rigDocumentShell>()) {
 }
 ```
 
-Web share (`?doc=` / `?src=`) stays in RigViewer JS — not this pack.
+Web share (`?doc=` / `?src=`) stays in RigViewer JS - not this pack.
 
 ## Depends
 

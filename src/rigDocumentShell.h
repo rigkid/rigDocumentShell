@@ -1,13 +1,13 @@
 #pragma once
 
-#include "DocumentShell.h"
 #include "core/pack/IPack.h"
+#include "DocumentShell.h"
 
 namespace rigkit {
 
 /**
- * @brief Code pack — shared document-host chrome for Viewer / Player apps.
- * @details Registers Skipped keys window. Configure via @ref shell().
+ * @brief Code pack - shared document-host chrome for Viewer / Player apps.
+ * @details Registers Skipped keys window. Configure via `shell()`.
  */
 class rigDocumentShell : public IPack {
   public:

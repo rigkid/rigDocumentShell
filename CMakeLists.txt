@@ -13,6 +13,6 @@ target_link_libraries(${PACK_NAME} PUBLIC rigkit)
 target_include_directories(${PACK_NAME} PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>
 )
-# IWindow lives in rigImGui — hard dependency (matches pack.json / addDependency).
+# IWindow lives in rigImGui - hard dependency (matches pack.json / addDependency).
 target_link_libraries(${PACK_NAME} PUBLIC rigImGui)
 message(STATUS "Configured pack: ${PACK_NAME} (document host chrome)")

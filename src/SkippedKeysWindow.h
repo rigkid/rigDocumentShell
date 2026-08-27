@@ -1,7 +1,6 @@
 #pragma once
 
 #include "IWindow.h"
-
 namespace rigkit {
 
 class DocumentShell;
