@@ -5,7 +5,7 @@ namespace rigkit {
 
 class DocumentShell;
 
-/** @brief Lists Contract keys the host skipped (honesty UI for Viewer / Player). */
+/** @brief Lists Contract keys the host skipped (Viewer / Player). */
 class SkippedKeysWindow : public IWindow {
   public:
 	explicit SkippedKeysWindow(DocumentShell* shell);

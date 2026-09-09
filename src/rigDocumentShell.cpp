@@ -11,11 +11,7 @@
 
 namespace rigkit {
 
-rigDocumentShell::rigDocumentShell() : IPack("rigDocumentShell") {
-	setDescription(
-		"Document-host chrome (Viewer/Player): File Open .rig, skipped keys; not load/present/play");
-	addDependency("rigImGui");
-}
+rigDocumentShell::rigDocumentShell() : IPack("rigDocumentShell") {}
 
 bool rigDocumentShell::init() {
 	spdlog::info("[rigDocumentShell] init");

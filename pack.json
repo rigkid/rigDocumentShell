@@ -5,11 +5,16 @@
   "version": "0.1.0",
   "author": "Rigkid",
   "license": "MIT Rigkid Contributors",
-  "description": "Document-host desktop chrome (Viewer/Player): File Open for .rig, skipped-key honesty UI, Edit Mode defaults. Not load/serialize (rigProject); not present/play.",
+  "description": "Document-host desktop chrome (Viewer/Player): File Open for .rig, skipped-key UI, Edit Mode defaults, Pages panel. Not load/serialize (rigProject); not present/play.",
   "dependencies": [
     {
       "name": "rigImGui",
       "url": "https://github.com/rigkid/rigImGui.git",
+      "ref": "main"
+    },
+    {
+      "name": "rigProject",
+      "url": "https://github.com/rigkid/rigProject.git",
       "ref": "main"
     }
   ],
