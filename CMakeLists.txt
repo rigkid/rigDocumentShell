@@ -27,7 +27,7 @@ target_link_libraries(${PACK_NAME} PUBLIC rigkit)
 target_include_directories(${PACK_NAME} PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>
 )
-# IWindow lives in rigImGui; CPage / pages.h live in rigProject.
+# ImGuiPanel lives in rigImGui; CPage / pages.h live in rigProject.
 foreach(_dep IN ITEMS rigImGui rigProject)
 	if(TARGET ${_dep})
 		target_link_libraries(${PACK_NAME} PUBLIC ${_dep})

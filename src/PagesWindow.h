@@ -2,7 +2,7 @@
 
 /**
  * @brief Pages panel - include and `createWindow<rig::PagesWindow>()`.
- * @details Lives on **rigDocumentShell**. Needs **rigImGui** (`IWindow`) and
+ * @details Lives on **rigDocumentShell**. Needs **rigImGui** (`ImGuiPanel`) and
  * **rigProject** (`CPage` / `rig/pages.h`). View options call `setPageLayout` /
  * `focusPage` / `fitPages`.
  */
@@ -13,14 +13,14 @@
 #include "core/RigKitEngine.h"
 #include "ecs/MEcs.h"
 #include "CPage.h"
-#include "IWindow.h"
+#include "ImGuiPanel.h"
 #include "rig/pages.h"
 
 namespace rig {
 
-class PagesWindow : public rigkit::IWindow {
+class PagesWindow : public rigkit::ImGuiPanel {
   public:
-	PagesWindow() : rigkit::IWindow("Pages", 0) { setCategory("Project"); }
+	PagesWindow() : rigkit::ImGuiPanel("Pages", 0) { setCategory("Project"); }
 
   protected:
 	void renderContents() override {

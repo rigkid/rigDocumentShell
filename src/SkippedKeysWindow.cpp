@@ -6,7 +6,7 @@
 namespace rigkit {
 
 SkippedKeysWindow::SkippedKeysWindow(DocumentShell* shell)
-	: IWindow("Skipped keys", 0), m_shell(shell) {
+	: ImGuiPanel("Skipped keys", 0), m_shell(shell) {
 	setCategory("Document");
 }
 

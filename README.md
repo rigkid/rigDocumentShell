@@ -45,4 +45,4 @@ Web share (`?doc=` / `?src=`) stays in RigViewer JS - not this pack.
 
 ## Depends
 
-**rigImGui** (`IMui` / IWindow) and **rigProject** (`CPage` / `rig/pages.h` for PagesWindow). The app still owns load / serialize.
+**rigImGui** (`IMui` / ImGuiPanel) and **rigProject** (`CPage` / `rig/pages.h` for PagesWindow). The app still owns load / serialize.
