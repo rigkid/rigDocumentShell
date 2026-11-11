@@ -4,6 +4,7 @@
 #include "core/pack/PackRegistry.h"
 #include "core/RigKitEngine.h"
 #include "MWindow.h"
+#include "Mui.h"
 #include "SkippedKeysWindow.h"
 
 #include <memory>
@@ -29,7 +30,8 @@ void rigDocumentShell::setup() {
 		spdlog::warn("[rigDocumentShell] no IMui - chrome skipped (need rigImGui)");
 		return;
 	}
-	auto* wm = ui->getWindowManager();
+	auto* mui = dynamic_cast<Mui*>(ui);
+	auto* wm = mui ? mui->getWindowManager() : nullptr;
 	if (!wm) {
 		return;
 	}
